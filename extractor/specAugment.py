@@ -131,7 +131,7 @@ def specFrequencyMasking(spec, seed=0, freq_mask_param=None):
 
 
 if __name__ == "__main__":
-    filepath = "/home/jym/PycharmProjects/audioProcess/data/1-137-A-32.wav"
+    filepath = "/data/1-137-A-32.wav"
     waveform, sample_rate = torchaudio.load(filepath)
 
 

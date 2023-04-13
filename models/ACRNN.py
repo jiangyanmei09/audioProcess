@@ -22,6 +22,7 @@ class ACRNN(nn.Module):
                                kernel_size=(3, 4),
                                stride=(1, 1),
                                padding=(1, 1))
+        self.bn1 = nn.BatchNorm2d(out_channels)
         self.pool1 = nn.MaxPool2d(kernel_size=(4, 3))
 
         self.conv2 = nn.Conv2d(in_channels=32,
@@ -29,6 +30,7 @@ class ACRNN(nn.Module):
                                kernel_size=(3, 1),
                                stride=(1, 1),
                                padding=(1, 1))
+        self.bn2 = nn.BatchNorm2d(64)
         self.pool2 = nn.MaxPool2d(kernel_size=(4, 1))
 
         self.conv3 = nn.Conv2d(in_channels=64,
@@ -36,6 +38,7 @@ class ACRNN(nn.Module):
                                kernel_size=(1, 5),
                                stride=(1, 1),
                                padding=(1, 1))
+        self.bn3 = nn.BatchNorm2d(128)
         self.pool3 = nn.MaxPool2d(kernel_size=(1, 3))
 
         self.conv4 = nn.Conv2d(in_channels=128,
@@ -43,6 +46,7 @@ class ACRNN(nn.Module):
                                kernel_size=(3, 3),
                                stride=(1, 1),
                                padding=(1, 1))
+        self.bn4 = nn.BatchNorm2d(256)
         self.pool4 = nn.MaxPool2d(kernel_size=(2, 2))
 
         self.flatten = nn.Flatten()
@@ -57,18 +61,22 @@ class ACRNN(nn.Module):
 
     def forward(self, x):
         x = self.conv1(x)
+        x = self.bn1(x)
         x = self.pool1(x)
         x = F.relu(x)
 
         x = self.conv2(x)
+        x = self.bn2(x)
         x = self.pool2(x)
         x = F.relu(x)
 
         x = self.conv3(x)
+        x = self.bn3(x)
         x = self.pool3(x)
         x = F.relu(x)
 
         x = self.conv4(x)
+        x = self.bn4(x)
         x = self.pool4(x)
         x = F.relu(x)
 
