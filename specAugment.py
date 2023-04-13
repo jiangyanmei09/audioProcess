@@ -42,6 +42,7 @@ def get_spectrogram(waveform, n_fft=400, win_len=None, hop_length=None, power=2.
     :param hop_length:帧移
     :param power:power=2为功率谱，power=1为能量谱
     :return:返回Tensor的spectrogram,若power=None时，返回的是torch.complex64，若power=2.0时，返回的是torch.float32
+            返回tensor的类型如（1，201，431），其中n_fft影响的是201，hop_length影响的是431
     """
     spectrogram = T.Spectrogram(
         n_fft=n_fft, win_length=win_len, hop_length=hop_length,
