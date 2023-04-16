@@ -32,18 +32,22 @@ class getParas():
 
 
         # TODO: params for training
-        parser.add_argument('--cuda', default=True, type=str, help='use cuda to train model')
-        parser.add_argument('--epochs', default=10, type=int, help='number of total epochs to train')
-        parser.add_argument('--bs', default=32, type=int, help='batch size')
-        parser.add_argument('--lr', default=1e-2, type=float, help='initial learning rate')
-        parser.add_argument('--drop', default=0.5, type=float, help='dropout ratio')
-        parser.add_argument('--w_decay', default=1e-4, type=float, help='weight decay')
-        parser.add_argument('--momentum', default=0.9, type=float, help='momentum value for SGD optim')
-        parser.add_argument('--gama', default=0.1, type=float, help='gama update for SGD')
-        parser.add_argument('--optimizer', default='SGD', type=str, help='optimizer method')
-        parser.add_argument('loss_fn', default='CrossEntropyLoss', type=str, help='loss function')
+        parser.add_argument('--device',      default='cuda',          type=str,   help='whether use cuda to train model or not')
+        parser.add_argument('--epoches',    default=10,            type=int,   help='number of total epochs to train')
+        parser.add_argument('--bs',        default=32,            type=int,   help='batch size')
+        parser.add_argument('--lr',        default=1e-2,          type=float, help='initial learning rate')
+        parser.add_argument('--drop',      default=0.5,           type=float, help='dropout ratio')
+        parser.add_argument('--weight_decay',   default=1e-4,          type=float, help='weight decay')
+        parser.add_argument('--momentum',  default=0.9,           type=float, help='momentum value for SGD optim')
+        parser.add_argument('--gama',      default=0.1,           type=float, help='gama update for SGD')
+        parser.add_argument('--optimizer', default='SGD',         type=str,   help='optimizer method')
+        parser.add_argument('--loss_fn',     default='CrossEntropyLoss', type=str, help='loss function')
+
+        # params for outputs
+        parser.add_argument('--log_dir',     default='outputs/logs/',    type=str, help='logs used for tensorboard')
+        parser.add_argument('--log_interval', default=100,  type=int, help='训练准确率展示间隔，每隔多少个batch展示一次训练准确率 ')
+        parser.add_argument('--save_model_path', default='outputs/models/', type=str, help='save model path')
 
         return parser.parse_args()
 
 args = getParas.parse_args()
-print(args)

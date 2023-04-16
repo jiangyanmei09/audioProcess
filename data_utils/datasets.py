@@ -49,8 +49,5 @@ if __name__ == "__main__":
     datasets = MyDataset(root_dir, label_dir)
 
 
-transforms.Compose([transforms.ToTensor(),
-                    transforms.Normalize([0.485, 0.456, 0.406])])
-
 
 
